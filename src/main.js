@@ -1,4 +1,6 @@
 import { mount } from 'svelte';
+import '@fontsource/instrument-sans/400.css';
+import '@fontsource/instrument-sans/700.css';
 import App from './App.svelte';
 import './app.css';
 

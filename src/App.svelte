@@ -255,19 +255,19 @@
           <div class="invoice-meta">
             <div>
               <span>Invoice Number</span>
-              <strong>{invoiceNumber}</strong>
+              <span>{invoiceNumber}</span>
             </div>
             <div>
               <span>Invoice Date</span>
-              <strong>{formatDate(issueDate)}</strong>
+              <span>{formatDate(issueDate)}</span>
             </div>
             <div>
               <span>Due Date</span>
-              <strong>{formatDate(dueDate)}</strong>
+              <span>{formatDate(dueDate)}</span>
             </div>
             <div>
-              <span>Total Amount</span>
-              <strong>{formatCurrency(total)}</strong>
+              <span>Amount Due</span>
+              <span>{formatCurrency(total)}</span>
             </div>
           </div>
         </div>
@@ -301,7 +301,7 @@
       </section>
 
       <section class="invoice-items-section">
-        <p class="mini-heading">Amount Details</p>
+        <p class="mini-heading">Details</p>
         <table class="invoice-table">
           <thead>
             <tr>
@@ -336,6 +336,14 @@
         <div class="payment-card">
           <p class="mini-heading">Payment Method</p>
           <div class="payment-info">
+            <p>Please make payment via bank transfer to</p>
+            {#if business.bankDetails.payid}
+              <div>
+                <span>PayID</span>
+                <span>{business.bankDetails.payid}</span>
+              </div>
+              <p class="payment-divider">Or</p>
+            {/if}
             <div>
               <span>BSB</span>
               <span>{business.bankDetails.bsb}</span>

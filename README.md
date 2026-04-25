@@ -40,7 +40,8 @@ Example `appconfig.local.json`:
     "bankDetails": {
       "accountName": "Example Pty Ltd",
       "bsb": "000-000",
-      "accountNumber": "12345678"
+      "accountNumber": "12345678",
+      "payid": "accounts@example.com"
     }
   }
 }
@@ -55,7 +56,7 @@ APP_CONFIG_PATH=./some-other-config.json pnpm build
 Or pass JSON directly:
 
 ```bash
-APP_CONFIG_JSON='{"business":{"name":"Example Pty Ltd","abn":"12 345 678 901","email":"accounts@example.com","phone":"","address":[],"bankDetails":{"accountName":"Example Pty Ltd","bsb":"000-000","accountNumber":"12345678"}}}' pnpm build
+APP_CONFIG_JSON='{"business":{"name":"Example Pty Ltd","abn":"12 345 678 901","email":"accounts@example.com","phone":"","address":[],"bankDetails":{"accountName":"Example Pty Ltd","bsb":"000-000","accountNumber":"12345678","payid":"accounts@example.com"}}}' pnpm build
 ```
 
 If no config is provided and `appconfig.local.json` does not exist, the app falls back to an empty business object.

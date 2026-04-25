@@ -86,7 +86,7 @@ button {
 .mini-heading {
   text-transform: uppercase;
   letter-spacing: 0.16em;
-  font-size: var(--font-size-xs);
+  font-size: var(--font-size-sm);
   font-weight: 700;
   color: #7a5c00;
   margin: 0 0 var(--space-1);
@@ -163,11 +163,11 @@ label {
 
 label span,
 .item-total span,
-.invoice-meta span,
+.invoice-meta span:first-child,
 .reference-row span,
 .totals-card span,
 .payment-info span:first-child {
-  font-size: var(--font-size-xs);
+  font-size: var(--font-size-sm);
   font-weight: 700;
   color: #66758f;
   text-transform: uppercase;
@@ -356,8 +356,21 @@ textarea:focus {
 
 .invoice-meta {
   display: grid;
-  max-width: 20rem;
+  max-width: 26rem;
   margin-bottom: var(--space-4);
+}
+
+.invoice-meta > div,
+.payment-info > div {
+  display: grid;
+  grid-template-columns: minmax(10rem, max-content) minmax(0, 1fr);
+  column-gap: var(--space-4);
+  align-items: baseline;
+}
+
+.payment-info span:last-child {
+  min-width: 0;
+  color: #1b2437;
 }
 
 .invoice-table {
@@ -382,7 +395,7 @@ textarea:focus {
 }
 
 .invoice-table th {
-  font-size: var(--font-size-xs);
+  font-size: var(--font-size-sm);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: #66758f;
@@ -392,10 +405,17 @@ textarea:focus {
   padding: var(--space-4) 0 0;
 }
 
+.payment-info {
+  display: grid;
+}
+
+.payment-divider {
+  margin: var(--space-4) 0 var(--space-4);
+}
+
 .tax-note {
   margin-top: var(--space-4);
-  color: #53627d;
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-base);
 }
 
 .invoice-table .grand-total td {
@@ -503,6 +523,19 @@ textarea:focus {
 
   .invoice-sheet {
     padding: 0;
+  }
+
+  .invoice-header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) max-content;
+    align-items: start;
+    gap: var(--space-5);
+  }
+
+  .brand-mark {
+    justify-self: end;
+    white-space: nowrap;
+    text-align: right;
   }
 
   .address-grid {

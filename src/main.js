@@ -14,7 +14,8 @@ const defaultBusiness = {
   bankDetails: {
     accountName: '',
     bsb: '',
-    accountNumber: ''
+    accountNumber: '',
+    payid: ''
   }
 };
 

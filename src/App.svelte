@@ -1,6 +1,6 @@
 <script>
   const minEditorWidth = 440;
-  const resizeHandleWidth = 16;
+  const resizeHandleWidth = 4;
 
   export let business;
 
@@ -34,6 +34,7 @@
   let shellWidth = 0;
   let editorWidth = 460;
   let isResizing = false;
+  let resizeGrabOffset = resizeHandleWidth / 2;
 
   const currency = new Intl.NumberFormat('en-AU', {
     style: 'currency',
@@ -112,7 +113,13 @@
     window.print();
   }
 
+  function gridColumnGap() {
+    if (!shellElement) return 0;
+    return Number.parseFloat(getComputedStyle(shellElement).columnGap) || 0;
+  }
+
   function startResize() {
+    resizeGrabOffset = resizeHandleWidth / 2;
     isResizing = true;
   }
 
@@ -123,7 +130,8 @@
   function resizePanels(event) {
     if (!isResizing || shellWidth <= 1080 || !shellElement) return;
     const { left } = shellElement.getBoundingClientRect();
-    editorWidth = Math.min(Math.max(event.clientX - left, minEditorWidth), maxEditorWidth);
+    const pointerEditorWidth = event.clientX - left - gridColumnGap() - resizeGrabOffset;
+    editorWidth = Math.min(Math.max(pointerEditorWidth, minEditorWidth), maxEditorWidth);
   }
 </script>
 

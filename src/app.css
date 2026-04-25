@@ -1,8 +1,26 @@
 :root {
   font-family: "Instrument Sans", "Segoe UI", sans-serif;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-md: 1.125rem;
+  --font-size-lg: 1.5rem;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
   color: #14213d;
   background:
-    radial-gradient(circle at top left, rgba(255, 209, 102, 0.6), transparent 30%),
+    radial-gradient(
+      circle at top left,
+      rgba(255, 209, 102, 0.6),
+      transparent 30%
+    ),
     linear-gradient(145deg, #f6f1e8 0%, #eef3f8 55%, #fefcf8 100%);
   line-height: 1.5;
   font-weight: 400;
@@ -21,6 +39,7 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  font-size: var(--font-size-base);
 }
 
 button,
@@ -36,8 +55,9 @@ button {
 
 .shell {
   display: grid;
-  gap: 1.5rem;
-  padding: 1.5rem;
+  column-gap: var(--space-2);
+  row-gap: var(--space-3);
+  padding: var(--space-3);
   align-items: start;
 }
 
@@ -45,12 +65,12 @@ button {
   background: rgba(255, 255, 255, 0.78);
   backdrop-filter: blur(12px);
   border: 1px solid rgba(20, 33, 61, 0.08);
-  border-radius: 28px;
+  border-radius: var(--radius-xl);
   box-shadow: 0 24px 80px rgba(20, 33, 61, 0.08);
 }
 
 .controls {
-  padding: 1.5rem;
+  padding: var(--space-5);
   min-width: 0;
 }
 
@@ -58,18 +78,18 @@ button {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
+  gap: var(--space-4);
+  margin-bottom: var(--space-5);
 }
 
 .eyebrow,
 .mini-heading {
   text-transform: uppercase;
   letter-spacing: 0.16em;
-  font-size: 0.72rem;
+  font-size: var(--font-size-xs);
   font-weight: 700;
   color: #7a5c00;
-  margin: 0 0 0.35rem;
+  margin: 0 0 var(--space-1);
 }
 
 h1,
@@ -79,13 +99,13 @@ p {
 }
 
 h1 {
-  font-size: clamp(1.2rem, 1.8vw, 1.55rem);
+  font-size: var(--font-size-lg);
   line-height: 1;
-  margin-bottom: 0.5rem;
+  margin-bottom: var(--space-2);
 }
 
 h2 {
-  font-size: 1.1rem;
+  font-size: var(--font-size-md);
   margin-bottom: 0;
 }
 
@@ -96,18 +116,18 @@ h2 {
 }
 
 .field-hint {
-  margin: -0.25rem 0 0;
+  margin: calc(var(--space-1) * -1) 0 0;
   color: #53627d;
-  font-size: 0.92rem;
+  font-size: var(--font-size-sm);
 }
 
 .section-copy {
-  margin: 1.8rem 0 1rem;
+  margin: var(--space-6) 0 var(--space-4);
 }
 
 .grid {
   display: grid;
-  gap: 1rem;
+  gap: var(--space-4);
 }
 
 .two-up {
@@ -121,19 +141,19 @@ h2 {
 label {
   display: flex;
   flex-direction: column;
-  gap: 0.45rem;
+  gap: var(--space-2);
   color: #31415f;
-  font-size: 0.95rem;
+  font-size: var(--font-size-sm);
 }
 
 .toggle-field {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 0.85rem 1rem;
-  margin-bottom: 1rem;
+  padding: var(--space-3) var(--space-4);
+  margin-bottom: var(--space-4);
   background: rgba(20, 33, 61, 0.03);
-  border-radius: 16px;
+  border-radius: var(--radius-md);
 }
 
 .toggle-field input {
@@ -147,7 +167,7 @@ label span,
 .reference-row span,
 .totals-card span,
 .payment-info span:first-child {
-  font-size: 0.8rem;
+  font-size: var(--font-size-xs);
   font-weight: 700;
   color: #66758f;
   text-transform: uppercase;
@@ -159,10 +179,13 @@ textarea {
   width: 100%;
   border: 1px solid rgba(20, 33, 61, 0.12);
   background: rgba(255, 255, 255, 0.94);
-  border-radius: 16px;
-  padding: 0.9rem 1rem;
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
   color: #14213d;
-  transition: border-color 140ms ease, box-shadow 140ms ease, transform 140ms ease;
+  transition:
+    border-color 140ms ease,
+    box-shadow 140ms ease,
+    transform 140ms ease;
 }
 
 input:focus,
@@ -174,8 +197,8 @@ textarea:focus {
 
 .primary,
 .ghost {
-  border-radius: 999px;
-  padding: 0.9rem 1.2rem;
+  border-radius: var(--radius-xl);
+  padding: var(--space-3) var(--space-4);
   font-weight: 700;
 }
 
@@ -196,18 +219,18 @@ textarea:focus {
 
 .line-items-editor {
   display: grid;
-  gap: 1rem;
+  gap: var(--space-4);
 }
 
 .line-item-row {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(140px, 180px) auto;
-  gap: 0.8rem;
+  gap: var(--space-3);
   align-items: end;
   min-width: 0;
-  padding: 1rem;
+  padding: var(--space-4);
   background: rgba(20, 33, 61, 0.03);
-  border-radius: 20px;
+  border-radius: var(--radius-lg);
 }
 
 .line-item-description {
@@ -232,18 +255,18 @@ textarea:focus {
   display: grid;
   place-items: center;
   white-space: nowrap;
-  font-size: 1.35rem;
+  font-size: var(--font-size-lg);
   line-height: 1;
 }
 
 .preview-panel {
-  padding: 1rem;
+  padding: var(--space-4);
   min-width: 0;
 }
 
 .resize-handle {
   width: 100%;
-  min-height: calc(100vh - 3rem);
+  min-height: calc(100vh - 1.5rem);
   padding: 0;
   background: transparent;
   display: grid;
@@ -254,21 +277,29 @@ textarea:focus {
 
 .resize-handle span {
   display: block;
-  width: 6px;
+  width: 100%;
   height: 5rem;
   border-radius: 999px;
-  background: linear-gradient(180deg, rgba(20, 33, 61, 0.12), rgba(20, 33, 61, 0.32));
+  background: linear-gradient(
+    180deg,
+    rgba(20, 33, 61, 0.12),
+    rgba(20, 33, 61, 0.32)
+  );
   box-shadow: 0 0 0 1px rgba(20, 33, 61, 0.06);
 }
 
 .shell.resizing .resize-handle span,
 .resize-handle:hover span {
-  background: linear-gradient(180deg, rgba(244, 163, 0, 0.35), rgba(39, 70, 144, 0.55));
+  background: linear-gradient(
+    180deg,
+    rgba(244, 163, 0, 0.35),
+    rgba(39, 70, 144, 0.55)
+  );
 }
 
 .preview-frame {
-  min-height: calc(100vh - 5rem);
-  padding: 2rem;
+  min-height: calc(100vh - 3.5rem);
+  padding: var(--space-5);
 }
 
 .invoice-sheet {
@@ -276,8 +307,8 @@ textarea:focus {
   max-width: 920px;
   margin: 0 auto;
   background: #fffef9;
-  border-radius: 28px;
-  padding: 2.25rem;
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
   color: #1b2437;
   box-shadow: inset 0 0 0 1px rgba(20, 33, 61, 0.08);
 }
@@ -285,7 +316,7 @@ textarea:focus {
 .invoice-header,
 .address-grid {
   display: grid;
-  gap: 1.25rem;
+  gap: var(--space-5);
 }
 
 .invoice-header {
@@ -294,20 +325,20 @@ textarea:focus {
 }
 
 .payment-section {
-  margin-top: 1rem;
+  margin-top: var(--space-4);
 }
 
 .invoice-items-section {
-  margin-top: 1rem;
+  margin-top: var(--space-4);
 }
 
 .address-grid {
   grid-template-columns: 1fr 1fr;
-  margin-top: 1rem;
+  margin-top: var(--space-4);
 }
 
 .brand-mark {
-  font-size: 0.85rem;
+  font-size: var(--font-size-sm);
   letter-spacing: 0.4em;
   font-weight: 800;
   color: #f4a300;
@@ -326,7 +357,7 @@ textarea:focus {
 .invoice-meta {
   display: grid;
   max-width: 20rem;
-  margin-bottom: 1rem;
+  margin-bottom: var(--space-4);
 }
 
 .invoice-table {
@@ -337,7 +368,7 @@ textarea:focus {
 
 .invoice-table th,
 .invoice-table td {
-  padding: 0.6rem 0.8rem;
+  padding: var(--space-3) var(--space-4);
   border-bottom: 1px solid rgba(20, 33, 61, 0.08);
   text-align: left;
 }
@@ -351,20 +382,20 @@ textarea:focus {
 }
 
 .invoice-table th {
-  font-size: 0.8rem;
+  font-size: var(--font-size-xs);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: #66758f;
 }
 
 .payment-card {
-  padding: 1rem 0 0;
+  padding: var(--space-4) 0 0;
 }
 
 .tax-note {
-  margin-top: 1rem;
+  margin-top: var(--space-4);
   color: #53627d;
-  font-size: 0.92rem;
+  font-size: var(--font-size-sm);
 }
 
 .invoice-table .grand-total td {
@@ -373,8 +404,8 @@ textarea:focus {
 }
 
 .invoice-footer {
-  margin-top: 1.8rem;
-  padding-top: 1rem;
+  margin-top: var(--space-6);
+  padding-top: var(--space-4);
   border-top: 1px solid rgba(20, 33, 61, 0.08);
   color: #53627d;
 }
@@ -399,7 +430,7 @@ textarea:focus {
   .preview-panel,
   .preview-frame,
   .invoice-sheet {
-    padding: 1rem;
+    padding: var(--space-4);
   }
 
   .two-up,
@@ -477,12 +508,12 @@ textarea:focus {
   .address-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1.25rem;
-    margin-top: 1rem;
+    gap: var(--space-5);
+    margin-top: var(--space-4);
   }
 
   .invoice-items-section {
-    margin-top: 0.75rem;
+    margin-top: var(--space-3);
   }
 
   .invoice-table {
@@ -491,6 +522,6 @@ textarea:focus {
 
   .invoice-table th,
   .invoice-table td {
-    padding: 0.6rem 0.8rem;
+    padding: var(--space-3) var(--space-4);
   }
 }

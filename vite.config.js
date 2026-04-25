@@ -3,6 +3,8 @@ import path from 'node:path';
 import { defineConfig } from 'vite';
 import { svelte } from '@sveltejs/vite-plugin-svelte';
 
+import { cloudflare } from "@cloudflare/vite-plugin";
+
 function loadAppConfig() {
   const defaultLocalConfigPath = path.resolve(process.cwd(), 'appconfig.local.json');
 
@@ -32,7 +34,7 @@ export default defineConfig(() => {
   }
 
   return {
-    plugins: [svelte()],
+    plugins: [svelte(), cloudflare()],
     define: {
       __APP_CONFIG__: JSON.stringify(injectedAppConfig)
     }

@@ -1,6 +1,7 @@
 <script>
   const minEditorWidth = 440;
   const resizeHandleWidth = 4;
+  const defaultDocumentTitle = 'Alkaid Invoice Generator';
 
   export let business;
 
@@ -72,6 +73,13 @@
     return formatInvoiceSuffix(value).padStart(3, '0');
   }
 
+  function filenameSafe(value) {
+    return String(value ?? '')
+      .replace(/[<>:"/\\|?*\x00-\x1F]/g, '')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
   function lineTotal(item) {
     return numericValue(item.amount);
   }
@@ -81,6 +89,7 @@
   $: total = subtotal + gst;
   $: invoiceSuffix = formatInvoiceSuffix(invoiceSuffix);
   $: invoiceNumber = `${invoicePrefix}${displayInvoiceSuffix(invoiceSuffix)}`;
+  $: pdfFileName = `${filenameSafe(business.name) || 'Invoice'} ${invoiceNumber}`;
   $: minPreviewWidth = shellWidth > 0 ? Math.min(320, Math.max(220, shellWidth * 0.35)) : 320;
   $: maxEditorWidth = shellWidth > 0 ? Math.max(minEditorWidth, shellWidth - minPreviewWidth - resizeHandleWidth) : 680;
   $: constrainedEditorWidth = Math.min(Math.max(editorWidth, minEditorWidth), maxEditorWidth);
@@ -110,7 +119,16 @@
   }
 
   function printInvoice() {
+    preparePrintTitle();
     window.print();
+  }
+
+  function preparePrintTitle() {
+    document.title = pdfFileName;
+  }
+
+  function restoreDocumentTitle() {
+    document.title = defaultDocumentTitle;
   }
 
   function gridColumnGap() {
@@ -136,14 +154,20 @@
 </script>
 
 <svelte:head>
-  <title>Alkaid Invoice Generator</title>
+  <title>{defaultDocumentTitle}</title>
   <meta
     name="description"
     content="Generate Australian tax invoices with editable bill-to details and invoice line items."
   />
 </svelte:head>
 
-<svelte:window on:pointermove={resizePanels} on:pointerup={stopResize} on:pointercancel={stopResize} />
+<svelte:window
+  on:afterprint={restoreDocumentTitle}
+  on:beforeprint={preparePrintTitle}
+  on:pointermove={resizePanels}
+  on:pointerup={stopResize}
+  on:pointercancel={stopResize}
+/>
 
 <div
   bind:this={shellElement}
